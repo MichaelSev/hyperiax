@@ -158,7 +158,7 @@ class HypTree:
             else:
                 yield current
     
-    def iter_topology_leaves_dfs(self) -> Iterator[TopologyNode]:
+    def iter_topology_leaves_bfs(self) -> Iterator[TopologyNode]:
         """
         Iterates over the leaves in the tree using depth-first search.
         Note that this is not the same as iter_topology_leaves_dfs, as this method is bfs 
@@ -202,34 +202,6 @@ class HypTree:
                 stack.extend(current.children)
             yield current
     
-    def iter_topology_leaves_dfs(self) -> Iterator[TopologyNode]:
-        """
-        Iterate over all of the leaves in the tree, in a depth-first manner.
-
-        """
-
-        queue = deque([self.topology_root])
-
-        while queue:
-            current = queue.popleft()
-            if current.children:
-                queue.extend(current.children)
-            else:
-                yield current
-    
-    def iter_topology_leaves_dfs(self) -> Iterator[TopologyNode]:
-        """
-        Iterates over the leaves in the tree using depth-first search.
-        Note that this is not the same as iter_topology_leaves_dfs, as this method is bfs 
-        """
-        stack = deque([self.topology_root])
-
-        while stack:
-            current = stack.pop()
-            if current.children:
-                stack.extend(reversed(current.children))
-            else:
-                yield current
 
     def iter_topology_levels(self) -> Iterator[List[TopologyNode]]:
         """
